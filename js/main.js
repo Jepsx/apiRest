@@ -8,25 +8,26 @@ const changeImage = async ()=>{
     json.forEach((item)=>{
         if(exploreSection.children.length == 4){
             let expChildren = exploreSection.children;
-            for(i = 0; i < expChildren.length; i++){
+            for(i = expChildren.length - 1; i >=0; i--){
                 let expChild = expChildren[i];
-                console.log(expChild.localName);
+
                 if(expChild.localName === 'articule'){
                     expChild.remove();
                 }
              }
 
-        }else{
+        }
             const art = document.createElement("articule");
             const pic = document.createElement("picture");
             const img = document.createElement('img');
+            art.classList.add('explore__article')
             pic.classList.add('img-container');
             img.classList.add('img-container__img');
             img.src = item.url;
             art.append(pic);
             pic.append(img);
             exploreSection.insertAdjacentElement('afterbegin',art);
-        }
+
 
     });
 

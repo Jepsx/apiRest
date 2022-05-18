@@ -8,12 +8,20 @@ html{
     font-size: 62.5%;
     font-family: 'Nunito';
 }
-
-.img-container{
-    width: 320px;
-    height: auto;
+body > h1{
+    font-weight: 700;
+    text-align: center;
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+}
+#explore{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+#explore > .explore__article{
+    width: 300px;
+    align-self: center;
+    border-radius: 5px;
 }
 
 .img-container > .img-container__img{
@@ -21,4 +29,14 @@ html{
     height: auto;
     object-fit: contain;
     object-position: 50% 50%;
+    margin-block-end: 10px;
+    border-radius: 5px;
+}
+
+#explore > button{
+    width: 100px;
+    height: 30px;
+    align-self: center;
+    margin-block-end: 10px;
+    border-radius: 5px;
 }
