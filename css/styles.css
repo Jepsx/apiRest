@@ -10,13 +10,15 @@ html{
 }
 
 .img-container{
-
-    
+    width: 320px;
+    height: auto;
+    display: flex;
+    justify-content: center;
 }
 
-.img-container > img{
-    width: 400px;
-    height: 300px;
-    object-fit: cover;
+.img-container > .img-container__img{
+    width: 300px;
+    height: auto;
+    object-fit: contain;
     object-position: 50% 50%;
 }
