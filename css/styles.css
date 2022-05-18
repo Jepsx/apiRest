@@ -1,0 +1,22 @@
+*{  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+    font-family: 'Nunito';
+}
+
+.img-container{
+
+    
+}
+
+.img-container > img{
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
