@@ -21,6 +21,7 @@ body > h1{
 }
 #explore > .explore__article{
     width: 300px;
+    position: relative;
     align-self: center;
     border-radius: 5px;
 }
@@ -33,7 +34,18 @@ body > h1{
     margin-block-end: 10px;
     border-radius: 5px;
 }
-
+.star{
+    display: block;
+    position: absolute;
+    top:10px;
+    left: 250px;
+    width: 40px;
+    height: 40px;
+    background-image: url('/assets/icons/start.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 #explore > button{
     width: 100px;
     height: 30px;

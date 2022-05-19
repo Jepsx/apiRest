@@ -1,5 +1,5 @@
 const URL_EXPLORE_RANDOM_DOGS = 'https://api.thedogapi.com/v1/images/search?limit=3';
-const URL_FAVORITES_DOGS = 'https://api.thedogapi.com/v1/favourites';
+const URL_FAVORITES_DOGS = 'https://api.thedogapi.com/v1/favourites?api_key=85959606-c561-4542-bbf6-fbf6de1bd3d0';
 
 
 const changeImage = async ()=>{
@@ -37,15 +37,17 @@ const changeImage = async ()=>{
                 const art = document.createElement("articule");
                 const pic = document.createElement("picture");
                 const img = document.createElement('img');
+                const span = document.createElement("span");
                 art.classList.add('explore__article');
                 pic.classList.add('img-container');
                 img.classList.add('img-container__img');
+                span.classList.add('star');
+                span.addEventListener('click',saveFavoriteDog);
                 img.src = item.url;
                 art.append(pic);
                 pic.append(img);
+                art.append(span);
                 exploreSection.insertAdjacentElement('afterbegin',art);
-    
-    
         });
     }
 
@@ -54,8 +56,6 @@ const changeImage = async ()=>{
 const getFavorites = async ()=>{
     const favoriteSection = document.querySelector('#favorites');
     let uldData = await fetch(URL_FAVORITES_DOGS);
-    console.log(uldData);
-
     if(uldData.status != 200){
         const art = document.createElement("articule");     
         const span = document.createElement("span");     
@@ -71,11 +71,34 @@ const getFavorites = async ()=>{
 
     }else{
         let json = await uldData.json();
+       
     }
 }
 
-changeImage();
-getFavorites();
+const saveFavoriteDog = async (item)=>{
 
+    const span = item.srcElement;
+    const pic =  span.previousElementSibling;
+    const img = pic.children[0];
+    const src = img.src;
+    const arr = src.split('/');
+    const pre_id = arr[4];
+    const arrPreId = pre_id.split('.');
+    const id = arrPreId[0];
+  
+    const res = await  fetch(URL_FAVORITES_DOGS,{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+        },
+        body: JSON.stringify({
+            image_id: id 
+        } 
+        )
+    });
+}
+
+changeImage();
+getFavorites(); 
 const btn = document.querySelector('button');
 btn.addEventListener('click', changeImage);
