@@ -14,9 +14,10 @@ body > h1{
     margin-block-start: 5px;
     margin-block-end: 5px;
 }
-#explore{
+#explore, #favorites {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+
 }
 #explore > .explore__article{
     width: 300px;
@@ -39,4 +40,42 @@ body > h1{
     align-self: center;
     margin-block-end: 10px;
     border-radius: 5px;
+}
+
+#explore > h2{
+    order: 1;
+    align-self: center;
+    margin-block-start: 15px;
+    margin-block-end: 15px;
+}
+#favorites{
+    flex-direction: column;
+}
+#favorites > h2{
+    align-self: center;
+    margin-block-start: 15px;
+    margin-block-end: 15px;
+}   
+
+.error{
+    display: flex;
+    width: 300px;
+    align-self: center;
+    flex-direction: column;
+    background-color: #f44;
+    margin-block-end: 10px;
+    border-radius: 5px;
+}
+
+.errorSpan{
+    align-self: center;
+    font-size: 3rem;
+    color: #fff;
+}
+
+.errorP{
+    align-self: center;
+    font-size: 2rem;
+    padding-block-end: 10px;
+    color: #fff;
 }
