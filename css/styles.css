@@ -19,7 +19,7 @@ body > h1{
     flex-direction: column-reverse;
 
 }
-#explore > .explore__article{
+#explore > .explore__article , #favorites > .explore__article{
     width: 300px;
     position: relative;
     align-self: center;
