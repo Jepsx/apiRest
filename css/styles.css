@@ -34,7 +34,7 @@ body > h1{
     margin-block-end: 10px;
     border-radius: 5px;
 }
-.star{
+.star, .cancel{
     display: block;
     position: absolute;
     top:10px;
@@ -45,6 +45,10 @@ body > h1{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.cancel{
+    
 }
 #explore > button{
     width: 100px;

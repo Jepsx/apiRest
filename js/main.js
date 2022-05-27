@@ -1,6 +1,8 @@
 const URL_EXPLORE_RANDOM_DOGS = 'https://api.thedogapi.com/v1/images/search';
 const URL_FAVORITES_DOGS = 'https://api.thedogapi.com/v1/favourites?api_key=85959606-c561-4542-bbf6-fbf6de1bd3d0';
 
+const URL_FAVORITES_DOGS_DELETE = (id)=>`https://api.thedogapi.com/v1/favourites/${id}?api_key=85959606-c561-4542-bbf6-fbf6de1bd3d0`;
+
 
 const changeImage = async ()=>{
     const exploreSection = document.querySelector('#explore');
@@ -58,17 +60,28 @@ const getFavorites = async ()=>{
 
     }else{
         let json = await uldData.json();
-        debugger
-        json.forEach((item)=>{
-            createElement(favoriteSection,item);
-        })
+        if(favoriteSection.children.length>1){
+            let favChildren = favoriteSection.children;
+                for(i = favChildren.length - 1; i >=0; i--){
+                    let favChild = favChildren[i];
+    
+                    if(favChild.localName === 'articule'){
+                        favChild.remove();
+                    }
+                 }
+    
+        }
+            json.forEach((item)=>{
+                createElement(favoriteSection,item);
+            })
+
 
        
     }
 }
 
 const saveFavoriteDog = async (id ,art)=>{
-    debugger
+
     const res = await  fetch(URL_FAVORITES_DOGS,{
         method:'POST',
         headers:{
@@ -86,6 +99,7 @@ const saveFavoriteDog = async (id ,art)=>{
     json.forEach((item)=>{
         createElement(explore,item);
     });
+    getFavorites();
     
     
 }
@@ -98,8 +112,14 @@ const createElement = (parent, item)=>{
     art.classList.add('explore__article');
     pic.classList.add('img-container');
     img.classList.add('img-container__img');
-    span.classList.add('star');
-    span.addEventListener('click',()=>{saveFavoriteDog(item.id,art)});
+    if(parent==document.querySelector('#explore')){
+        span.classList.add('star');
+        span.addEventListener('click',()=>{saveFavoriteDog(item.id,art)});
+    }else{
+        span.classList.add('cancel');
+        span.addEventListener('click',()=>{deleteFavorite(item.id,art)});
+    }
+
     if(parent==document.querySelector('#explore')){
 
         img.src = item.url;
@@ -114,6 +134,26 @@ const createElement = (parent, item)=>{
     }else{
         parent.insertAdjacentElement('beforeend',art);
     }
+}
+
+const deleteFavorite =  async (id, child)=>{
+    const res = await  fetch(URL_FAVORITES_DOGS_DELETE(id),{
+        method:'DELETE',
+    });
+    if(res.status != 200){
+        const art = document.createElement("articule");     
+        const span = document.createElement("span");     
+        const p = document.createElement("p");
+        span.innerText = uldData.status;
+        p.innerText = 'Oops!, something went wrong.'
+        art.classList.add('error');
+        span.classList.add('errorSpan');
+        p.classList.add('errorP');
+        art.append(span);
+        art.append(p);
+        favoriteSection.append(art);
+    }
+    child.remove();
 }
 
 changeImage();
