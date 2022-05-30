@@ -186,6 +186,7 @@ inputDogFile.addEventListener('change', ()=>{
 const uploadDogPic = async ()=>{
     const form = document.getElementById('uploadingDog');
     const formData = new FormData(form);
+    const file = formData.get('file');
 
     const res = await fetch(URL_UPLOAD_DOG,{
         method: 'POST',
@@ -194,6 +195,21 @@ const uploadDogPic = async ()=>{
         },
         body: formData
     })
+    if(res.status != 200){
+        const art = document.createElement("articule");     
+        const span = document.createElement("span");     
+        const p = document.createElement("p");
+        span.innerText = res.status; 
+        p.innerText = 'Oops!, something went wrong.'
+        debugger
+        art.classList.add('error');
+        span.classList.add('errorSpan');
+        p.classList.add('errorP');
+        art.append(span);
+        art.append(p);
+        const uploadSec = document.getElementById('uploadingDog');
+        uploadSec.append(art);
+    }
 }
 
 
