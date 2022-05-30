@@ -1,5 +1,6 @@
 const URL_EXPLORE_RANDOM_DOGS = 'https://api.thedogapi.com/v1/images/search';
 const URL_FAVORITES_DOGS = 'https://api.thedogapi.com/v1/favourites';
+const URL_UPLOAD_DOG = 'https://api.thedogapi.com/v1/images/upload';
 
 const URL_FAVORITES_DOGS_DELETE = (id)=>`https://api.thedogapi.com/v1/favourites/${id}`;
 
@@ -159,8 +160,41 @@ const deleteFavorite =  async (id, child)=>{
     }
     child.remove();
 }
+const nameDog = document.getElementById('nameDog');
+const inputDogFile = document.getElementById('file');
+inputDogFile.addEventListener('change', ()=>{
+    const form = document.getElementById('uploadingDog');
+    const formData = new FormData(form);
+    const previewImage = document.createElement('img');
+    previewImage.classList.add('img-style');
+    const reader = new FileReader();
+    const file = formData.get('file');
 
+    reader.addEventListener('load',()=>{
+        previewImage.src = reader.result;
+        
+    },false);
+    if(file){
 
+        reader.readAsDataURL(file);
+    }
+    nameDog.insertAdjacentElement('beforebegin',previewImage)
+    nameDog.innerText = file.name;
+    nameDog.classList.add('load')
+})
+
+const uploadDogPic = async ()=>{
+    const form = document.getElementById('uploadingDog');
+    const formData = new FormData(form);
+
+    const res = await fetch(URL_UPLOAD_DOG,{
+        method: 'POST',
+        headers:{
+            'x-api-key':'85959606-c561-4542-bbf6-fbf6de1bd3d0',
+        },
+        body: formData
+    })
+}
 
 
 changeImage();

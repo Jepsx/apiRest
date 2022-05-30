@@ -17,12 +17,15 @@
         <button  id="refresh">refresh</button>
     </section>
     <section id="upload">
-        <label for="file">
-            Choose Your Pic
-            <input type="file" name="file" id="file">
-        </label>
-        <button type="button">Upload your Pic</button>
-    </section>
+        <form id="uploadingDog">
+            <label class="file-container" for="file">
+                Choose your Picture
+                <input type="file" name="file" id="file">
+                <span id="nameDog"></span>
+            </label>
+            <button type="button" onclick="uploadDogPic()">Upload your Pic</button>
+        </section>
+        </form>
     <section id="favorites">
         <h2>Your Favorites Dogs</h2>
     </section>

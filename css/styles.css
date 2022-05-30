@@ -14,7 +14,7 @@ body > h1{
     margin-block-start: 5px;
     margin-block-end: 5px;
 }
-#explore, #favorites, #upload {
+#explore, #favorites, #uploadingDog {
     display: flex;
     flex-direction: column-reverse;
 
@@ -64,7 +64,7 @@ body > h1{
     margin-block-start: 15px;
     margin-block-end: 15px;
 }
-#favorites, #upload{
+#favorites, #uploadingDog{
     flex-direction: column;
 }
 #favorites > h2{
@@ -96,29 +96,51 @@ body > h1{
     color: #fff;
 }
 
-#upload > label {
+#upload > #uploadingDog >  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
     font-size: 3rem;
     font-weight: 700;
     text-align: center;
     width: 280px;
-    height: 200px;
+    min-width: 150px;
     border: 2px dashed ;
 }
-#upload >label > #file{
+#upload > #uploadingDog > label > #file{
     display: none;
 }
 
-#upload > button, #upload > label {
+#upload > #uploadingDog >  button, #upload > #uploadingDog >  label, #upload > #uploadingDog >  span {
     font-family: 'Nunito';
     align-self: center;
     border-radius: 5px;
     margin-block-end: 10px;
 }
 
-#upload > button{
+#upload > #uploadingDog >  button{
     font-size: 1.6rem;
     font-weight: 700;
     width: 150px;
     height: 50px;
+}
+
+#upload > #uploadingDog >.file-container >span{
+    width: 280px;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;        
+}
+
+.img-style{
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+}
+
+.load{
+    background-color: lightgreen;
 }
