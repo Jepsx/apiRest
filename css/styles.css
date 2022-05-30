@@ -14,7 +14,7 @@ body > h1{
     margin-block-start: 5px;
     margin-block-end: 5px;
 }
-#explore, #favorites {
+#explore, #favorites, #upload {
     display: flex;
     flex-direction: column-reverse;
 
@@ -64,7 +64,7 @@ body > h1{
     margin-block-start: 15px;
     margin-block-end: 15px;
 }
-#favorites{
+#favorites, #upload{
     flex-direction: column;
 }
 #favorites > h2{
@@ -94,4 +94,31 @@ body > h1{
     font-size: 2rem;
     padding-block-end: 10px;
     color: #fff;
+}
+
+#upload > label {
+    cursor: pointer;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    width: 280px;
+    height: 200px;
+    border: 2px dashed ;
+}
+#upload >label > #file{
+    display: none;
+}
+
+#upload > button, #upload > label {
+    font-family: 'Nunito';
+    align-self: center;
+    border-radius: 5px;
+    margin-block-end: 10px;
+}
+
+#upload > button{
+    font-size: 1.6rem;
+    font-weight: 700;
+    width: 150px;
+    height: 50px;
 }

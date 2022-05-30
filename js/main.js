@@ -1,7 +1,7 @@
 const URL_EXPLORE_RANDOM_DOGS = 'https://api.thedogapi.com/v1/images/search';
-const URL_FAVORITES_DOGS = 'https://api.thedogapi.com/v1/favourites?api_key=85959606-c561-4542-bbf6-fbf6de1bd3d0';
+const URL_FAVORITES_DOGS = 'https://api.thedogapi.com/v1/favourites';
 
-const URL_FAVORITES_DOGS_DELETE = (id)=>`https://api.thedogapi.com/v1/favourites/${id}?api_key=85959606-c561-4542-bbf6-fbf6de1bd3d0`;
+const URL_FAVORITES_DOGS_DELETE = (id)=>`https://api.thedogapi.com/v1/favourites/${id}`;
 
 
 const changeImage = async ()=>{
@@ -44,7 +44,9 @@ const changeImage = async ()=>{
 
 const getFavorites = async ()=>{
     const favoriteSection = document.querySelector('#favorites');
-    let uldData = await fetch(URL_FAVORITES_DOGS);
+    let uldData = await fetch(URL_FAVORITES_DOGS,{
+        method:'GET',
+        headers:{ 'x-api-key':'85959606-c561-4542-bbf6-fbf6de1bd3d0',}});
     if(uldData.status != 200){
         const art = document.createElement("articule");     
         const span = document.createElement("span");     
@@ -86,6 +88,7 @@ const saveFavoriteDog = async (id ,art)=>{
         method:'POST',
         headers:{
             'Content-Type':'application/json',
+            'x-api-key':'85959606-c561-4542-bbf6-fbf6de1bd3d0'
         },
         body: JSON.stringify({
             image_id: id 
@@ -139,6 +142,7 @@ const createElement = (parent, item)=>{
 const deleteFavorite =  async (id, child)=>{
     const res = await  fetch(URL_FAVORITES_DOGS_DELETE(id),{
         method:'DELETE',
+        headers:{'x-api-key':'85959606-c561-4542-bbf6-fbf6de1bd3d0'}
     });
     if(res.status != 200){
         const art = document.createElement("articule");     
@@ -155,6 +159,9 @@ const deleteFavorite =  async (id, child)=>{
     }
     child.remove();
 }
+
+
+
 
 changeImage();
 getFavorites(); 
